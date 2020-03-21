@@ -1,0 +1,9 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: *
+Disallow: 
+Disallow: /cgi-bin/
+Disallow: /@dm1n/
+Disallow: /img/
+Disallow: /images/
+Disallow: /imager/
+Sitemap: http://urbaloca.es/sitemap.xml
