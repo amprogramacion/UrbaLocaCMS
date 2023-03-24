@@ -1,13 +1,13 @@
 <?
 session_start();
 include("conectar.php");
-$query_ip = mysql_query("SELECT * FROM banip WHERE ip='".$_SERVER['REMOTE_ADDR']."'");
-if(mysql_num_rows($query_ip)) {
-	$ver_ip = mysql_fetch_array($query_ip);
+$query_ip = mysqli_query($conn, "SELECT * FROM banip WHERE ip='".$_SERVER['REMOTE_ADDR']."'");
+if(mysqli_num_rows($query_ip)) {
+	$ver_ip = mysqli_fetch_array($query_ip);
 	if($ver_ip['tiempo'] >= time()) {
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../ban.php">';
 	} else {
-	@mysql_query("DELETE FROM banip WHERE ip='".$_SERVER['REMOTE_ADDR']."'");
+	@mysqli_query($conn, "DELETE FROM banip WHERE ip='".$_SERVER['REMOTE_ADDR']."'");
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 	}
 }
@@ -100,9 +100,9 @@ if(isset($_POST['Submit'])) {
 	if($_SESSION['intentos'] <= 0) {
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$fechaban = strtotime("+2 hours");
-		$query = mysql_query("SELECT * FROM banip WHERe ip='$ip'");
-		if(!mysql_num_rows($query)) {
-			@mysql_query("INSERT INTO banip (ip, tiempo, motivo) VALUES ('$ip', '$fechaban', 'Has sido expulsado de UrbaLoca 2 horas por intentar acceder al panel de administracion sin tener permisos para ello')");
+		$query = mysqli_query($conn, "SELECT * FROM banip WHERe ip='$ip'");
+		if(!mysqli_num_rows($query)) {
+			@mysqli_query($conn, "INSERT INTO banip (ip, tiempo, motivo) VALUES ('$ip', '$fechaban', 'Has sido expulsado de UrbaLoca 2 horas por intentar acceder al panel de administracion sin tener permisos para ello')");
 			session_unset();
 			session_destroy();
 			echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
@@ -110,12 +110,12 @@ if(isset($_POST['Submit'])) {
 	} else {
 		$user = $_POST['user'];
 		$pass = $_POST['pass'];
-		$query = mysql_query("SELECT * FROM users WHERE nombre='".$user."'");
-		if(!mysql_num_rows($query)) {
+		$query = mysqli_query($conn, "SELECT * FROM users WHERE nombre='".$user."'");
+		if(!mysqli_num_rows($query)) {
 			$_SESSION['intentos'] = $_SESSION['intentos']-1;
 			echo '<script>alert("Ese usuario no está registrado en la base de datos");</script><META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 		} else {
-			$ver = mysql_fetch_array($query);
+			$ver = mysqli_fetch_array($query);
 			if($ver['pass'] != md5(md5($pass))) {
 				echo '<script>alert("La contraseña es incorrecta");</script><META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 				$_SESSION['intentos'] = $_SESSION['intentos']-1;

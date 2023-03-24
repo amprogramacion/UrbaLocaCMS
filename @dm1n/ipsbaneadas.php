@@ -12,9 +12,9 @@ if(isset($_POST['Submit'])) {
 	$dia = $_POST['dia'];
 	$hora = $_POST['hora'];
 	$tiempo = strtotime("+$ano years +$mes months +$dia days +$hora hours");
-	$query = mysql_query("SELECT * FROM banip WHERE ip='$ip'");
-	if(!mysql_num_rows($query)) {
-		@mysql_query("INSERT INTO banip (ip, tiempo, motivo) VALUES ('$ip', '$tiempo', '$motivo')");
+	$query = mysqli_query($conn, "SELECT * FROM banip WHERE ip='$ip'");
+	if(!mysqli_num_rows($query)) {
+		@mysqli_query($conn, "INSERT INTO banip (ip, tiempo, motivo) VALUES ('$ip', '$tiempo', '$motivo')");
 	} else {
 		echo '<script>alert("Esa IP ya está baneada");</script>';
 	}
@@ -114,11 +114,11 @@ if(isset($_POST['Submit'])) {
                 </form>
               <p>
                   <?
-			  $query_b = mysql_query("SELECT * FROM banip");
-			  if(!mysql_num_rows($query_b)) {
+			  $query_b = mysqli_query($conn, "SELECT * FROM banip");
+			  if(!mysqli_num_rows($query_b)) {
 			  	echo "No hay IPs baneadas";
 			} else {
-			while($ver_b = mysql_fetch_array($query_b)) {
+			while($ver_b = mysqli_fetch_array($query_b)) {
 			?>
                 </p>
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">

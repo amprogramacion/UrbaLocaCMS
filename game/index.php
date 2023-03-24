@@ -1,8 +1,8 @@
 <?
 session_start();
 include("../conectar.php");
-$query = mysql_query("SELECT * FROM mantenimiento");
-$ver = mysql_fetch_array($query);
+$query = mysqli_query($conn, "SELECT * FROM mantenimiento");
+$ver = mysqli_fetch_array($query);
 if($ver['estado_cliente'] == "0") {
 die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=mantenimiento.php">');
 } else {

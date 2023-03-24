@@ -52,14 +52,14 @@ die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
 if(isset($_POST['Buscar'])) {
 	$campo = $_POST['campo'];
 	$valor = $_POST['valor'];
-	$query = mysql_query("SELECT * FROM users WHERE $campo LIKE '%$valor%'");
+	$query = mysqli_query($conn, "SELECT * FROM users WHERE $campo LIKE '%$valor%'");
 } else {
-	$query = mysql_query("SELECT * FROM users ORDER BY id ASC");
+	$query = mysqli_query($conn, "SELECT * FROM users ORDER BY id ASC");
 }
-if(!mysql_num_rows($query)) {
+if(!mysqli_num_rows($query)) {
 	echo "<div class='error'>La consulta ha devuelto un valor de 0 resultados</div>";
 } else {
-	while($ver = mysql_fetch_array($query)) {
+	while($ver = mysqli_fetch_array($query)) {
 	?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>

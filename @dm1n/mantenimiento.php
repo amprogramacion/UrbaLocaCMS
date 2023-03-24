@@ -4,8 +4,8 @@ include("conectar.php");
 if(!isset($_SESSION['admin'])) {
 die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
 }
-$query = mysql_query("SELECT * FROM mantenimiento");
-$ver = mysql_fetch_array($query);
+$query = mysqli_query($conn, "SELECT * FROM mantenimiento");
+$ver = mysqli_fetch_array($query);
 $estado_web = $ver['estado_web'];
 $estado_cliente = $ver['estado_cliente'];
 if($estado_web == 1) {
@@ -26,15 +26,15 @@ if(isset($_GET['cambiar'])) {
 	$cambiar = $_GET['cambiar'];
 	if($cambiar == "web") {
 		if($estado_web == 1) {
-			@mysql_query("UPDATE mantenimiento SET estado_web='0'");
+			@mysqli_query($conn, "UPDATE mantenimiento SET estado_web='0'");
 		} else {
-			@mysql_query("UPDATE mantenimiento SET estado_web='1'");
+			@mysqli_query($conn, "UPDATE mantenimiento SET estado_web='1'");
 		}
 	} else {
 		if($estado_cliente == 1) {
-			@mysql_query("UPDATE mantenimiento SET estado_cliente='0'");
+			@mysqli_query($conn, "UPDATE mantenimiento SET estado_cliente='0'");
 		} else {
-			@mysql_query("UPDATE mantenimiento SET estado_cliente='1'");
+			@mysqli_query($conn, "UPDATE mantenimiento SET estado_cliente='1'");
 		}
 	}
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=panel.php?id=mantenimiento">';

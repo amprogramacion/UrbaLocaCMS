@@ -24,11 +24,11 @@ die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
           <tr>
             <td>
 			<?
-			$query = mysql_query("SELECT * FROM rooms ORDER BY id DESC");
-if(!mysql_num_rows($query)) {
+			$query = mysqli_query($conn, "SELECT * FROM rooms ORDER BY id DESC");
+if(!mysqli_num_rows($query)) {
 	echo "No hay salas";
 } else {
-	while($ver = mysql_fetch_array($query)) {
+	while($ver = mysqli_fetch_array($query)) {
 	?><table width="100%" border="0" cellpadding="0" cellspacing="0">
               <tr>
                 <td width="10" align="right" valign="bottom"><img src="img/cuadradogris/supiz.png" width="10" height="10" /></td>

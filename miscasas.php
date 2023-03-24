@@ -77,10 +77,10 @@ die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
 			$owner = $_SESSION['user'];
 			if(trim($name) == NULL) {
 			echo "<center><span style='color: red;'><b>El nombre de la sala no puede estar vacio</b></span></center>";
-			} else if(mysql_num_rows($queryC) >= 5) {
+			} else if(mysqli_num_rows($queryC) >= 5) {
 			echo "<center><span style='color: red;'><b>No puedes crear mas de 5 casas</b></span></center>";
 			} else {
-			@mysql_query("INSERT INTO rooms (name, owner, maxu, muebles, color, suelo, pass) VALUES ('$name', '$owner', '$maxu', '', '1', '1', '$pass')");
+			@mysqli_query($conn, "INSERT INTO rooms (name, owner, maxu, muebles, color, suelo, pass) VALUES ('$name', '$owner', '$maxu', '', '1', '1', '$pass')");
 			echo "<center><span style='color: blue;'><b>Tu sala se ha creado correctamente. Espera 1 segundo...</b></span></center>";
 			echo '<META HTTP-EQUIV="Refresh" CONTENT="2; URL=index.php?id=miscasas">';
 			}
@@ -108,17 +108,17 @@ die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
                 <td><div align="justify">
                     <p>Se muestra una <strong>lista de tus salas</strong>. Si has establecido <strong>contrase&ntilde;a, </strong>haz click en el <strong>candado</strong> para mostrarla<strong>.</strong>. Aqu&iacute; puedes, tambi&eacute;n, <strong>borrar las salas</strong> aunque ten en cuenta<strong style="color:Red;"> todo lo que haya en la sala</strong> <em>(pinturas y muebles)</em> <strong style="color:Red;">ser&aacute;n eliminados tambi&eacute;n. </strong></p>
                   <?
-					while($verC = mysql_fetch_array($queryC)) {
+					while($verC = mysqli_fetch_array($queryC)) {
 					if($verC['pass'] != NULL) {
 					$imagen = "<a href=\"javascript:alert('Contrase&ntilde;a: ".$verC['pass']."');\"><img src=\"images/candado.png\" border=\"0\" /></a>";
 					} else {
 					$imagen = '<img src="images/candado2.png" border="0" />';
 					}
-					$query_ux = mysql_query("SELECT * FROM users WHERE logueado='1' AND estoyen='".$verC['id']."'");
-					if(!mysql_num_rows($query_ux)) {
+					$query_ux = mysqli_query($conn, "SELECT * FROM users WHERE logueado='1' AND estoyen='".$verC['id']."'");
+					if(!mysqli_num_rows($query_ux)) {
 					$numerousers = "0";
 					} else {
-					$numerousers = mysql_num_rows($query_ux);
+					$numerousers = mysqli_num_rows($query_ux);
 					}
 					?>
                     <table width="95%" border="0" align="center">
@@ -162,17 +162,17 @@ die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
                       <td width="72%" align="center" bgcolor="#FFFFFF"><strong>SALA</strong></td>
                     </tr>
                     <?
-					  $query_s = mysql_query("SELECT * FROM users WHERE logueado='1' LIMIT 0,20");
-					  if(!mysql_num_rows($query_s)) {
+					  $query_s = mysqli_query($conn, "SELECT * FROM users WHERE logueado='1' LIMIT 0,20");
+					  if(!mysqli_num_rows($query_s)) {
 					  ?>
                     <tr>
                       <td align="center" bgcolor="#FFFFFF" colspan="2"><strong><span style="color:red;">No hay usuarios conectados</span></strong></td>
                     </tr>
                     <?
 					  } else {
-					  while($ver_s = mysql_fetch_array($query_s)) {
-					  $query_n = mysql_query("SELECT * FROM rooms WHERE id='".$ver_s['estoyen']."'");
-					  $ver_n = mysql_fetch_array($query_n);
+					  while($ver_s = mysqli_fetch_array($query_s)) {
+					  $query_n = mysqli_query($conn, "SELECT * FROM rooms WHERE id='".$ver_s['estoyen']."'");
+					  $ver_n = mysqli_fetch_array($query_n);
 					  if($ver_n['name'] == NULL) {
 					  $nombresala = "Lobby Principal";
 					  } else {
@@ -202,10 +202,10 @@ die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
 	  <?
 	  if(isset($_GET['borrar'])) {
 	  	if($_GET['confirmar'] == "yes") {
-	  		$queryDelete = mysql_query("SELECT * FROM rooms WHERE id='".$_GET['borrar']."'");
-	  		$verDelete = mysql_fetch_array($queryDelete);
+	  		$queryDelete = mysqli_query($conn, "SELECT * FROM rooms WHERE id='".$_GET['borrar']."'");
+	  		$verDelete = mysqli_fetch_array($queryDelete);
 	  		if($verDelete['owner'] == $_SESSION['user']) {
-	  			@mysql_query("DELETE FROM rooms WHERE id='".$_GET['borrar']."'");
+	  			@mysqli_query($conn, "DELETE FROM rooms WHERE id='".$_GET['borrar']."'");
 	  		}
 		 echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php?id=miscasas">';
 	  }

@@ -20,12 +20,12 @@ if(isset($_POST['Submit'])) {
 		echo '<script>alert("Todos los campos son obligatorios.");</script>';
 		echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=recordar.php">';
 	} else {
-		$query_email = mysql_query("SELECT * FROM users WHERE email='".$email."'");
-		if(!mysql_num_rows($query_email)) {
+		$query_email = mysqli_query($conn, "SELECT * FROM users WHERE email='".$email."'");
+		if(!mysqli_num_rows($query_email)) {
 			echo '<script>alert("Ese email no esta registrado en UrbaLoca.");</script>';
 			echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=recordar.php">';
 		} else {
-			$ver = mysql_fetch_array($query_email);
+			$ver = mysqli_fetch_array($query_email);
 			$user = $ver['nombre'];
 			$pass = sha1(base64_encode($ver['pass']));
 			mail("$email", "UrbaLoca - Recordatorio de datos", "Hola $user!\n\nHace poco nos has solicitado recordar tu contraseña en UrbaLoca. Estos son tus datos:\n\nEmail: $email\n\nPara generar una nueva contraseña, haz click aqui: \nhttp://urbaloca.es/generar.php?user=$user&codeact=$pass\n\nAccede a UrbaLoca haciendo click en http://www.urbaloca.es\n\nNo respondas a este correo, no se revisan las respuestas.", "From: noreply@urbaloca.es");

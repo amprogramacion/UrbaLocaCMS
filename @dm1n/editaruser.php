@@ -5,11 +5,11 @@ if(!isset($_SESSION['admin'])) {
 die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
 }
 $ide = $_GET['ide'];
-$query = mysql_query("SELECT * FROM users WHERE id='$ide'");
-if(!mysql_num_rows($query)) {
+$query = mysqli_query($conn, "SELECT * FROM users WHERE id='$ide'");
+if(!mysqli_num_rows($query)) {
 	echo "Ese ID no existe";
 } else {
-	$ver = mysql_fetch_array($query);
+	$ver = mysqli_fetch_array($query);
 	if(isset($_POST['Submit'])) {
 		$nid = $_POST['nid'];
 		$nombre = $_POST['nombre'];
@@ -20,14 +20,14 @@ if(!mysql_num_rows($query)) {
 		$fichas = $_POST['fichas'];
 		$placas = $_POST['placas'];
 		$vip = $_POST['vip'];
-		@mysql_query("UPDATE users SET nombre='$nombre' WHERE id='$nid'");
-		@mysql_query("UPDATE users SET pass='$pass' WHERE id='$nid'");
-		@mysql_query("UPDATE users SET email='$email' WHERE id='$nid'");
-		@mysql_query("UPDATE users SET fnac='$fnac' WHERE id='$nid'");
-		@mysql_query("UPDATE users SET rango='$rango' WHERE id='$nid'");
-		@mysql_query("UPDATE users SET fichas='$fichas' WHERE id='$nid'");
-		@mysql_query("UPDATE users SET placas='$placas' WHERE id='$nid'");
-		@mysql_query("UPDATE users SET vip='$vip' WHERE id='$nid'");
+		@mysqli_query($conn, "UPDATE users SET nombre='$nombre' WHERE id='$nid'");
+		@mysqli_query($conn, "UPDATE users SET pass='$pass' WHERE id='$nid'");
+		@mysqli_query($conn, "UPDATE users SET email='$email' WHERE id='$nid'");
+		@mysqli_query($conn, "UPDATE users SET fnac='$fnac' WHERE id='$nid'");
+		@mysqli_query($conn, "UPDATE users SET rango='$rango' WHERE id='$nid'");
+		@mysqli_query($conn, "UPDATE users SET fichas='$fichas' WHERE id='$nid'");
+		@mysqli_query($conn, "UPDATE users SET placas='$placas' WHERE id='$nid'");
+		@mysqli_query($conn, "UPDATE users SET vip='$vip' WHERE id='$nid'");
 		echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=panel.php?id=editaruser&ide='.$nid.'">';
 	}
 ?>

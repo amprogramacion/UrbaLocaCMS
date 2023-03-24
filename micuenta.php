@@ -44,15 +44,15 @@ include("bloquelogin.php");
 	$pass = $_POST['pass'];
 	$npass = $_POST['npass'];
 	$npass2 = $_POST['npass2'];
-	$query = mysql_query("SELECT * FROM users WHERE nombre='".$_SESSION['user']."'");
-	$ver = mysql_fetch_array($query);
+	$query = mysqli_query($conn, "SELECT * FROM users WHERE nombre='".$_SESSION['user']."'");
+	$ver = mysqli_fetch_array($query);
 	if($ver['pass'] != md5(md5($pass))) {
 	echo "<div style='color:red'><center><strong>La contrase&ntilde;a actual no coincide</strong></center></div>";
 	} elseif($npass != $npass2) {
 	echo "<div style='color:red'><center><strong>Las nuevas contrase&ntilde;as no coinciden</strong></center></div>";
 	} else {
-	@mysql_query("UPDATE users SET codeact='".md5(rand(111111, 999999))."' WHERE nombre='".$_SESSION['user']."'");
-	@mysql_query("UPDATE users SET pass='".md5(md5($npass))."' WHERE nombre='".$_SESSION['user']."'");
+	@mysqli_query($conn, "UPDATE users SET codeact='".md5(rand(111111, 999999))."' WHERE nombre='".$_SESSION['user']."'");
+	@mysqli_query($conn, "UPDATE users SET pass='".md5(md5($npass))."' WHERE nombre='".$_SESSION['user']."'");
 	echo "<div style='color:blue'><center><strong>La nueva contrase&ntilde;a se ha actualizado con exito.</strong></center></div>";
 	}
 	}
@@ -80,7 +80,7 @@ include("bloquelogin.php");
   <?
 	if(isset($_POST['cambiarMision'])) {
 	$mision = $_POST['mision'];
-	@mysql_query("UPDATE users SET mision='$mision' WHERE nombre='".$_SESSION['user']."'");
+	@mysqli_query($conn, "UPDATE users SET mision='$mision' WHERE nombre='".$_SESSION['user']."'");
 	echo "<div style='color:blue'><center><strong>Tu mision se ha actualizado. Espera 1 segundo...</strong></center></div>";
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="2; URL=index.php?id=micuenta">';
 	}
@@ -209,17 +209,17 @@ include("bloquelogin.php");
       <td width="72%"  style="background-color: #FFFFFF;"><strong>SALA</strong></td>
     </tr>
     <?
-					  $query_s = mysql_query("SELECT * FROM users WHERE logueado='1' LIMIT 0,20");
-					  if(!mysql_num_rows($query_s)) {
+					  $query_s = mysqli_query($conn, "SELECT * FROM users WHERE logueado='1' LIMIT 0,20");
+					  if(!mysqli_num_rows($query_s)) {
 					  ?>
     <tr>
       <td  style="background-color: #FFFFFF;" colspan="2"><strong><span style="color:red;">No hay usuarios conectados</span></strong></td>
     </tr>
     <?
 					  } else {
-					  while($ver_s = mysql_fetch_array($query_s)) {
-					  $query_n = mysql_query("SELECT * FROM rooms WHERE id='".$ver_s['estoyen']."'");
-					  $ver_n = mysql_fetch_array($query_n);
+					  while($ver_s = mysqli_fetch_array($query_s)) {
+					  $query_n = mysqli_query($conn, "SELECT * FROM rooms WHERE id='".$ver_s['estoyen']."'");
+					  $ver_n = mysqli_fetch_array($query_n);
 					  if($ver_n['name'] == NULL) {
 					  $nombresala = "Lobby Principal";
 					  } else {

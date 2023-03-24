@@ -1,19 +1,19 @@
 <?
 session_start();
 include("conectar.php");
-$query_ip = mysql_query("SELECT * FROM banip WHERE ip='".$_SERVER['REMOTE_ADDR']."'");
-$query_ip2 = mysql_query("SELECT * FROM users WHERE ip='".$_SERVER['REMOTE_ADDR']."' AND baneado='1'");
-$query_user = mysql_query("SELECT * FROM users WHERE nombre='".$_SESSION['user']."' AND baneado='1'");
-$ver_ip = mysql_fetch_array($query_ip);
-$ver_ip2 = mysql_fetch_array($query_ip2);
-$ver_user = mysql_fetch_array($query_user);
-if(mysql_num_rows($query_ip)) {
+$query_ip = mysqli_query($conn, "SELECT * FROM banip WHERE ip='".$_SERVER['REMOTE_ADDR']."'");
+$query_ip2 = mysqli_query($conn, "SELECT * FROM users WHERE ip='".$_SERVER['REMOTE_ADDR']."' AND baneado='1'");
+$query_user = mysqli_query($conn, "SELECT * FROM users WHERE nombre='".$_SESSION['user']."' AND baneado='1'");
+$ver_ip = mysqli_fetch_array($query_ip);
+$ver_ip2 = mysqli_fetch_array($query_ip2);
+$ver_user = mysqli_fetch_array($query_user);
+if(mysqli_num_rows($query_ip)) {
 	$motivo = $ver_ip['motivo'];
 	$tiempo = date('d-m-Y - H:i:s', $ver_ip['tiempo']);
-} else if(mysql_num_rows($query_ip2)) {
+} else if(mysqli_num_rows($query_ip2)) {
 	$motivo = $ver_ip2['motivo'];
 	$tiempo = date('d-m-Y - H:i:s', $ver_ip2['tiempo']);
-} else if(mysql_num_rows($query_user)) {
+} else if(mysqli_num_rows($query_user)) {
 	$motivo = $ver_user['motivo'];
 	$tiempo = date('d-m-Y - H:i:s', $ver_user['fechaban']);
 } else {

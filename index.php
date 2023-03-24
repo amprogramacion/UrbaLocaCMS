@@ -1,24 +1,20 @@
 <?
 session_start();
 include("conectar.php");
-include("captcha/autoload.php");
-$siteKey = '6Ld1lQsTAAAAALQIx2-Ezj5Rfv-5s9Wh2thf8X3N';
-$secret = '6Ld1lQsTAAAAAJ1tcFnQcW_yQVxyRAwmMXq08psy';
 $lang = 'es';
-$recaptcha = new \ReCaptcha\ReCaptcha($secret);
-$queryN = mysql_query("SELECT * FROM mantenimiento");
-$verN = mysql_fetch_array($queryN);
+$queryN = mysqli_query($conn, "SELECT * FROM mantenimiento");
+$verN = mysqli_fetch_array($queryN);
 if($verN['estado_web'] == "0") {
 echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=mantenimiento.php">';
 }
 if(isset($_POST['email'])) {
 	$email = $_POST['email'];
 	$pass = md5(md5($_POST['pass']));
-	$query = mysql_query("SELECT * FROM users WHERE email='".$email."'");
-	if(!mysql_num_rows($query)) {
+	$query = mysqli_query($conn, "SELECT * FROM users WHERE email='".$email."'");
+	if(!mysqli_num_rows($query)) {
 		echo '<script>alert("El correo electronico introducido no existe en nuestros servidores");</script><META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 	} else {
-		$ver = mysql_fetch_array($query);
+		$ver = mysqli_fetch_array($query);
 		$user = $ver['nombre'];
 		$pass2 = $ver['pass'];
 		$baneado = $ver['baneado'];
@@ -28,16 +24,16 @@ if(isset($_POST['email'])) {
 		} else {
 		$_SESSION['user'] = $user;
 		$_SESSION["pass"] = $pass;
-		@mysql_query("UPDATE users SET ip='".$_SERVER['REMOTE_ADDR']."' WHERE nombre='$user'");
+		@mysqli_query($conn, "UPDATE users SET ip='".$_SERVER['REMOTE_ADDR']."' WHERE nombre='$user'");
 		echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 		}
 	}
 }
 if(isset($_SESSION['user'])) {
-$queryB = mysql_query("SELECT * FROM users WHERE nombre='".$_SESSION['user']."'");
-$verB = mysql_fetch_array($queryB);
-$queryC = mysql_query("SELECT * FROM rooms WHERE owner='".$_SESSION['user']."'");
-$numcasas = mysql_num_rows($queryC);
+$queryB = mysqli_query($conn, "SELECT * FROM users WHERE nombre='".$_SESSION['user']."'");
+$verB = mysqli_fetch_array($queryB);
+$queryC = mysqli_query($conn, "SELECT * FROM rooms WHERE owner='".$_SESSION['user']."'");
+$numcasas = mysqli_num_rows($queryC);
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

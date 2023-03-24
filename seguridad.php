@@ -67,17 +67,17 @@ include("bloquelogin.php");
           <td width="72%"  style="background-color: #FFFFFF;"><strong>SALA</strong></td>
         </tr>
         <?
-					  $query_s = mysql_query("SELECT * FROM users WHERE logueado='1' LIMIT 0,20");
-					  if(!mysql_num_rows($query_s)) {
+					  $query_s = mysqli_query($conn, "SELECT * FROM users WHERE logueado='1' LIMIT 0,20");
+					  if(!mysqli_num_rows($query_s)) {
 					  ?>
         <tr>
           <td  style="background-color: #FFFFFF;" colspan="2"><strong><span style="color:red;">No hay usuarios conectados</span></strong></td>
         </tr>
         <?
 					  } else {
-					  while($ver_s = mysql_fetch_array($query_s)) {
-					  $query_n = mysql_query("SELECT * FROM rooms WHERE id='".$ver_s['estoyen']."'");
-					  $ver_n = mysql_fetch_array($query_n);
+					  while($ver_s = mysqli_fetch_array($query_s)) {
+					  $query_n = mysqli_query($conn, "SELECT * FROM rooms WHERE id='".$ver_s['estoyen']."'");
+					  $ver_n = mysqli_fetch_array($query_n);
 					  if($ver_n['name'] == NULL) {
 					  $nombresala = "Lobby Principal";
 					  } else {

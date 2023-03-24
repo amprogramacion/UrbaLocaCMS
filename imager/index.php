@@ -1,8 +1,8 @@
 <?php
 include("../conectar.php");
-$query = mysql_query("SELECT * FROM users WHERE nombre='".$_GET['user']."'");
-if(mysql_num_rows($query)) {
-$ver = mysql_fetch_array($query);
+$query = mysqli_query($conn, "SELECT * FROM users WHERE nombre='".$_GET['user']."'");
+if(mysqli_num_rows($query)) {
+$ver = mysqli_fetch_array($query);
 $pelo = $ver['pelo'];
 $camisa = $ver['camisa'];
 $pants = $ver['pants'];

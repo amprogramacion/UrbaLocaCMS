@@ -8,7 +8,7 @@ if(isset($_POST['Submit'])) {
 	$titulo = $_POST['titulo'];
 	$fecha = $_POST['fecha'];
 	$texto = $_POST['texto'];
-	@mysql_query("INSERT INTO concursos (titulo, fecha, texto) VALUES ('$titulo', '$fecha', '$texto')");
+	@mysqli_query($conn, "INSERT INTO concursos (titulo, fecha, texto) VALUES ('$titulo', '$fecha', '$texto')");
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=panel.php?id=gesconcursos">';
 }
 ?>
@@ -58,8 +58,8 @@ if(isset($_POST['Submit'])) {
                 </table>
                   </form>
 <?
-$query = mysql_query("SELECT * FROM concursos ORDER BY id DESC");
-while($ver = mysql_fetch_array($query)) {
+$query = mysqli_query($conn, "SELECT * FROM concursos ORDER BY id DESC");
+while($ver = mysqli_fetch_array($query)) {
 ?>
               <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>

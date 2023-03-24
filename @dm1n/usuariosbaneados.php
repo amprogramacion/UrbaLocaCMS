@@ -12,9 +12,9 @@ if(isset($_POST['Submit'])) {
 	$dia = $_POST['dia'];
 	$hora = $_POST['hora'];
 	$fechaban = strtotime("+$ano years +$mes months +$dia days +$hora hours");
-	@mysql_query("UPDATE users SET baneado='1' WHERE nombre='$nombre'");
-	@mysql_query("UPDATE users SET motivo='$motivo' WHERE nombre='$nombre'");
-	@mysql_query("UPDATE users SET fechaban='$fechaban' WHERE nombre='$nombre'");
+	@mysqli_query($conn, "UPDATE users SET baneado='1' WHERE nombre='$nombre'");
+	@mysqli_query($conn, "UPDATE users SET motivo='$motivo' WHERE nombre='$nombre'");
+	@mysqli_query($conn, "UPDATE users SET fechaban='$fechaban' WHERE nombre='$nombre'");
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=panel.php?id=usuariosbaneados">';
 }
 ?>
@@ -111,11 +111,11 @@ if(isset($_POST['Submit'])) {
                             </form>
               <p>
 			  <?
-			  $query_b = mysql_query("SELECT * FROM users WHERE baneado='1'");
-			  if(!mysql_num_rows($query_b)) {
+			  $query_b = mysqli_query($conn, "SELECT * FROM users WHERE baneado='1'");
+			  if(!mysqli_num_rows($query_b)) {
 			  	echo "No hay usuarios baneados";
 			} else {
-			while($ver_b = mysql_fetch_array($query_b)) {
+			while($ver_b = mysqli_fetch_array($query_b)) {
 			?>
               </p>
               <table width="100%" border="0" cellpadding="0" cellspacing="0">

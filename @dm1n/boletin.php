@@ -53,8 +53,8 @@ if(isset($_POST['Submit'])) {
 	if($asunto == NULL || $mensaje == NULL) {
 		echo "<span style='color:red;'>Falta algun campo</span>";
 	} else {
-		$query = mysql_query("SELECT * FROM users");
-		while($ver = mysql_fetch_array($query)) {
+		$query = mysqli_query($conn, "SELECT * FROM users");
+		while($ver = mysqli_fetch_array($query)) {
 			$email = $ver['email'];
 			$nombre = $ver['nombre'];
 			$fichas = $ver['fichas'];

@@ -9,7 +9,7 @@ if(isset($_POST['Submit'])) {
 	$fecha = $_POST['fecha'];
 	$descripcion = $_POST['descripcion'];
 	$texto = $_POST['texto'];
-	@mysql_query("INSERT INTO noticias (titulo, fecha, descripcion, texto) VALUES ('$titulo', '$fecha', '$descripcion', '$texto')");
+	@mysqli_query($conn, "INSERT INTO noticias (titulo, fecha, descripcion, texto) VALUES ('$titulo', '$fecha', '$descripcion', '$texto')");
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=panel.php?id=gesnoticias">';
 }
 ?>
@@ -59,8 +59,8 @@ if(isset($_POST['Submit'])) {
                 </table>
                   </form>
 <?
-$query = mysql_query("SELECT * FROM noticias ORDER BY id DESC");
-while($ver = mysql_fetch_array($query)) {
+$query = mysqli_query($conn, "SELECT * FROM noticias ORDER BY id DESC");
+while($ver = mysqli_fetch_array($query)) {
 ?>
               <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>

@@ -5,17 +5,17 @@ if(!isset($_SESSION['admin'])) {
 die('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">');
 }
 $noticia = $_GET['noticia'];
-$query = mysql_query("SELECT * FROM noticias WHERE id='$noticia'");
-$ver = mysql_fetch_array($query);
+$query = mysqli_query($conn, "SELECT * FROM noticias WHERE id='$noticia'");
+$ver = mysqli_fetch_array($query);
 if(isset($_POST['Submit'])) {
 	$titulo = $_POST['titulo'];
 	$fecha = $_POST['fecha'];
 	$descripcion = $_POST['descripcion'];
 	$texto = $_POST['texto'];
-	@mysql_query("UPDATE noticias SET titulo='$titulo' WHERE id='$noticia'");
-	@mysql_query("UPDATE noticias SET fecha='$fecha' WHERE id='$noticia'");
-	@mysql_query("UPDATE noticias SET descripcion='$descripcion' WHERE id='$noticia'");
-	@mysql_query("UPDATE noticias SET texto='$texto' WHERE id='$noticia'");
+	@mysqli_query($conn, "UPDATE noticias SET titulo='$titulo' WHERE id='$noticia'");
+	@mysqli_query($conn, "UPDATE noticias SET fecha='$fecha' WHERE id='$noticia'");
+	@mysqli_query($conn, "UPDATE noticias SET descripcion='$descripcion' WHERE id='$noticia'");
+	@mysqli_query($conn, "UPDATE noticias SET texto='$texto' WHERE id='$noticia'");
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=panel.php?id=editarnoticia&noticia='.$noticia.'">';
 }
 ?>
