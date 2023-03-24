@@ -82,7 +82,7 @@ xmlhttp.send(null);
 }
 setInterval("comprobar()", 1000);
 </script>
-<link rel="icon" type="image/png" href="http://urbaloca.es/favicon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
 <link href="css/home.css" rel="stylesheet"/>
 <link href="css/home.css" rel="stylesheet" media="print" />
 </head>

@@ -6,4 +6,4 @@ Disallow: /@dm1n/
 Disallow: /img/
 Disallow: /images/
 Disallow: /imager/
-Sitemap: http://urbaloca.es/sitemap.xml
+Sitemap: /sitemap.xml

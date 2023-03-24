@@ -28,7 +28,7 @@ if(isset($_POST['Submit'])) {
 			$ver = mysqli_fetch_array($query_email);
 			$user = $ver['nombre'];
 			$pass = sha1(base64_encode($ver['pass']));
-			mail("$email", "UrbaLoca - Recordatorio de datos", "Hola $user!\n\nHace poco nos has solicitado recordar tu contraseña en UrbaLoca. Estos son tus datos:\n\nEmail: $email\n\nPara generar una nueva contraseña, haz click aqui: \nhttp://urbaloca.es/generar.php?user=$user&codeact=$pass\n\nAccede a UrbaLoca haciendo click en http://www.urbaloca.es\n\nNo respondas a este correo, no se revisan las respuestas.", "From: noreply@urbaloca.es");
+			mail("$email", "UrbaLoca - Recordatorio de datos", "Hola $user!\n\nHace poco nos has solicitado recordar tu contraseña en UrbaLoca. Estos son tus datos:\n\nEmail: $email\n\nPara generar una nueva contraseña, haz click aqui: \n/generar.php?user=$user&codeact=$pass\n\nAccede a UrbaLoca haciendo click en http://www.urbaloca.es\n\nNo respondas a este correo, no se revisan las respuestas.", "From: noreply@urbaloca.es");
 			echo '<script>alert("Hemos enviado a tu correo electronico tus datos de acceso a UrbaLoca.");</script>';
 			echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 		}
