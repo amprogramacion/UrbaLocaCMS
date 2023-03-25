@@ -19,7 +19,7 @@ if (isset($_POST['email'])) {
         $pass2 = $ver['pass'];
         $baneado = $ver['baneado'];
         $activado = $ver['activado'];
-        if (password_verify($pass, $pass2)) {
+        if (!password_verify($pass, $pass2)) {
             echo '<script>alert("La contraseña introducida es incorrecta");</script><META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
         } else {
             $_SESSION['user'] = $user;
