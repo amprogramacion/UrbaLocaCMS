@@ -77,9 +77,9 @@ if (!isset($_SESSION['user'])) {
                 </table>
             </form>
             <?
-            if (isset($_POST['cambiarMision'])) {
+            if (isset($_POST['cambiarMision2'])) {
                 $mision = $_POST['mision'];
-                @mysqli_query($conn, "UPDATE users SET mision='$mision' WHERE nombre='" . $_SESSION['user'] . "'");
+                mysqli_query($conn, "UPDATE users SET mision='$mision' WHERE nombre='" . $_SESSION['user'] . "'");
                 echo "<div style='color:blue'><center><strong>Tu mision se ha actualizado. Espera 1 segundo...</strong></center></div>";
                 echo '<META HTTP-EQUIV="Refresh" CONTENT="2; URL=index.php?id=micuenta">';
             }
@@ -164,7 +164,7 @@ if (!isset($_SESSION['user'])) {
                 <tr>
                     <td align="right"><strong>Subscripci&oacute;n VIP: </strong></td>
                     <td><?
-                        $fecha_vip = date('d-m-Y', $verB['vip']);
+                        /*$fecha_vip = date('d-m-Y', STRE$verB['vip']);
                         if ($verB['vip'] != NULL && ($verB['vip'] >= time())) {
                             ?>
                             <span style="color:blue;">Eres VIP hasta el <b>
@@ -175,8 +175,8 @@ if (!isset($_SESSION['user'])) {
                             ?>
                             <span style="color:red;"><b>No eres miembro VIP</b></span>
                             <?
-                        }
-                        ?></td>
+                        }*/
+                        ?>NO DISPONIBLE</td>
                 </tr>
                 <tr>
                     <td align="right"><strong>Misi&oacute;n:</strong></td>
