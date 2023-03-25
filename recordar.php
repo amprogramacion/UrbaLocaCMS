@@ -30,7 +30,7 @@ if(isset($_POST['Submitx'])) {
 			$pass = sha1(base64_encode($ver['pass']));
 			mail("$email", "UrbaLoca - Recordatorio de datos", "Hola $user!\n\nHace poco nos has solicitado recordar tu contraseña en UrbaLoca. Estos son tus datos:\n\nEmail: $email\n\nPara generar una nueva contraseña, haz click aqui: \nhttps://old2016.urba-loca.es/generar.php?user=$user&codeact=$pass\n\nAccede a UrbaLoca haciendo click en http://www.urba-loca.es\n\nNo respondas a este correo, no se revisan las respuestas.", "From: noreply@urbaloca.es");
 			echo '<script>alert("Hemos enviado a tu correo electronico tus datos de acceso a UrbaLoca.");</script>';
-			echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
+			echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=/recordar">';
 		}
 	}
 }
