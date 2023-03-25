@@ -1,4 +1,4 @@
-<form name="form1" method="post" action="">
+<form name="form1" method="post" action="/recordar">
   <div class="cuadro1" style="margin: 10px 10px 10px 10px; width: 444px; text-align:center; padding: 10px 10px 10px 10px;">
     <p><img src="images/login_title.png" alt="" width="355"  height="55" /></p>
     <p><br />
@@ -7,14 +7,14 @@
       <input name="email" type="text" class="campoLogin" id="email" size="40" />
     </p>
     <p><br />
-      <input name="Submit" type="submit" class="recordarButton" id="Submit" value=" " />
+      <input name="Submitx" type="submit" class="recordarButton" id="Submit" value=" " />
       <br />
       <br />
       <a href="index.php" title="Urbaloca - Tu chat virtual para conocer gente"><img src="images/volvere.png" alt="Urbaloca - Tu chat virtual para conocer gente" width="301" height="38" /></a></p>
   </div>
 </form>
 <?
-if(isset($_POST['Submit'])) {
+if(isset($_POST['Submitx'])) {
 	$email = $_POST['email'];
 	if($email == NULL) {
 		echo '<script>alert("Todos los campos son obligatorios.");</script>';
