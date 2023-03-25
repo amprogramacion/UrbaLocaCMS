@@ -55,7 +55,7 @@ if ($ver['estado_cliente'] == "0") {
             <div id="resultado"></div>
             Si usas firefox, instala esta <a href="https://addons.mozilla.org/es/firefox/addon/flashplayer-swf-to-html/" target="_blank">extensi&oacute;n</a> para cargar el juego.<br>
                 <h3>Nosotros te recomendamos descargar el swf compilado en exe <i>(no tiene virus. Es un swf normal, pero este formato ya no lo soportan los navegadores). </i></h3>
-                <h4><a href="urbaloca.exe">DESCARGAR URBALOCA.SWF (EN FORMATO EXE - WINDOWS, <strong style="color: red;">NO SE NECESITA INSTALACI&Oacute;N)</strong></a></h4>
+                <h4><a href="urbaloca2.exe">DESCARGAR URBALOCA.SWF (EN FORMATO EXE - WINDOWS, <strong style="color: red;">NO SE NECESITA INSTALACI&Oacute;N)</strong></a></h4>
             <!--URL utilizadas en la película-->
             <a href="http://urba-loca.es/beta/game.php"></a>
             <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="100%" height="100%" id="urbaloca" align="middle">
