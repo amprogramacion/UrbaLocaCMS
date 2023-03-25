@@ -12,9 +12,8 @@ if(!mysqli_num_rows($query)) {
 		echo "El codigo de autorización es incorrecto.";
 	} else {
 		$nuevapass = rand(111111, 999999);
-		$nuevapass2 = md5(md5($nuevapass));
-		@mysqli_query($conn, "UPDATE users SET pass='$nuevapass2' WHERE nombre='$user'");
-		@mysqli_query($conn, "UPDATE users SET codeact='".md5(rand(111111, 999999))."' WHERE nombre='$user'");
+		$nuevapass2 = password_hash($nuevapass, PASSWORD_DEFAULT);
+		mysqli_query($conn, "UPDATE users SET pass='$nuevapass2', codeact='".md5(rand(111111, 999999))."' WHERE nombre='$user'");
 		$email = $ver['email'];
 		mail("$email", "UrbaLoca: Generacion de contraseña", "Hola $user\n\nComo nos has pedido, te hemos generado una nueva contraseña de acceso a UrbaLoca. Estos son tus nuevos datos de acceso:\n\nUsuario: $user\nContraseña: $nuevapass\n\nCambia tu contraseña cuando vuelvas a loguearte en UL\n\nNo respondas a este email, es generado automaticamente", "From: noreply@urbaloca.es");
 		echo "Tu nueva contraseña ha sido enviada a tu correo electronico $email<br>Redigiriendo a UL...";
