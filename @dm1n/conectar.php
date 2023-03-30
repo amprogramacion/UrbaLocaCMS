@@ -1,8 +1,8 @@
 <?php
-$dbhost='localhost';
-$dbusername='urbaloca_user';
-$dbuserpass='123456asd';
-$dbname='urbaloca_web';
-$conn = mysql_connect ($dbhost, $dbusername, $dbuserpass) or die('No se puede conectar a la base de datos');
-mysql_select_db($dbname, $conn) or die('No se puede seleccionar la base de datos');
+
+$dbhost = '82.223.54.179';
+$dbusername = 'urbaloca_old';
+$dbuserpass = "2k8x1Wa*8";
+$dbname = 'urbaloca_old_2016';
+$conn = mysqli_connect($dbhost, $dbusername, $dbuserpass, $dbname) or die('No se puede conectar a la base de datos');
 ?>
