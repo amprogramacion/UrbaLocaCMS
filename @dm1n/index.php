@@ -116,7 +116,7 @@ if(isset($_POST['Submit'])) {
 			echo '<script>alert("Ese usuario no está registrado en la base de datos");</script><META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 		} else {
 			$ver = mysqli_fetch_array($query);
-			if($ver['pass'] != md5(md5($pass))) {
+			if(!password_verify($pass, $ver['pass'])) {
 				echo '<script>alert("La contraseña es incorrecta");</script><META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 				$_SESSION['intentos'] = $_SESSION['intentos']-1;
 			} elseif($ver['rango'] == "ADM" || $ver['rango'] == "MOD") {
