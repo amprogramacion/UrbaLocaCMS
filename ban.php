@@ -93,7 +93,7 @@ setInterval("comprobar()", 1000);
     <td background="images/bg_up.png"><table width="800" height="56" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td width="100" height="56"></td>
-        <td width="700" height="56"><a href="index.php"><img src="images/ul_logo.png" width="218" height="33" border="0" /></a></td>
+        <td width="700" height="56"><a href="index.php"><img src="images/ullogo.png" width="218" height="33" border="0" /></a></td>
       </tr>
     </table></td>
   </tr>
